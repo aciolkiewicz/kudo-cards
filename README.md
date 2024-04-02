@@ -9,7 +9,6 @@ Board for kudo cards with possibility to create new kudos.
 - TypeScript
 - Redux Toolkit
 - MongoDB
-- Tailwind CSS
 - Atomic Design
 
 ## Deployed version

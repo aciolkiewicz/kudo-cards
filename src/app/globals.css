@@ -1,33 +1,45 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --cornsilk: #faf4d3;
+  --jonquil: #f9c80e;
+  --giants-orange: #f86624;
+  --red-pantone: #ea3546;
+  --rebecca-purple: #662e9b;
+  --moon-stone: #43bccd;
+  --rich-black: #0c1618;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--moon-stone);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--jonquil);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e3e33b;
+}
+
+html {
+  background-color: var(--cornsilk);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: var(--rich-black);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
