@@ -1,7 +1,10 @@
-import "./globals.css";
+import "@/app/globals.css";
 
 import type { Metadata } from "next";
 import { Roboto_Slab } from "next/font/google";
+
+import BottomBar from "@/components/Organisms/BottomBar/BottomBar";
+import TopBar from "@/components/Organisms/TopBar/TopBar";
 
 const robotoSlab = Roboto_Slab({ subsets: ["latin"] });
 
@@ -17,7 +20,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={robotoSlab.className}>{children}</body>
+      <body className={robotoSlab.className}>
+        <TopBar />
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+          {children}
+        </main>
+        <BottomBar />
+      </body>
     </html>
   );
 }
