@@ -1,5 +1,5 @@
 :root {
-  --cornsilk: #faf4d3;
+  --cornsilk: #ffffff;
   --jonquil: #f9c80e;
   --giants-orange: #f86624;
   --red-pantone: #ea3546;
@@ -42,5 +42,5 @@ a {
   text-decoration: none;
 }
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }

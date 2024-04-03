@@ -1,0 +1,38 @@
+.navList {
+  display: flex;
+  gap: 1.5em;
+  list-style: none;
+}
+
+.navListElement {
+  display: flex;
+  align-items: center;
+}
+
+.standard {
+  font-weight: 700;
+  transition: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
+  text-underline-offset: 4px;
+}
+
+.standard:hover {
+  text-decoration: underline;
+  text-underline-offset: 1px;
+}
+
+.button p {
+  padding: 5px 10px;
+  font-weight: 700;
+  transition: all;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+  color: var(--moon-stone);
+  border: 2px solid var(--moon-stone);
+}
+
+.button:hover p {
+  color: var(--cornsilk);
+  background-color: var(--moon-stone);
+}
