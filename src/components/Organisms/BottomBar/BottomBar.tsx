@@ -1,7 +1,7 @@
-import React from "react";
+import styles from "./BottomBar.module.css";
 
 const BottomBar = () => {
-  return <footer>BottomBar</footer>;
+  return <footer className={styles.bottomBar}>BottomBar</footer>;
 };
 
 export default BottomBar;

@@ -6,6 +6,8 @@ import { Roboto_Slab } from "next/font/google";
 import BottomBar from "@/components/Organisms/BottomBar/BottomBar";
 import TopBar from "@/components/Organisms/TopBar/TopBar";
 
+import styles from "./layout.module.css";
+
 const robotoSlab = Roboto_Slab({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,9 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={robotoSlab.className}>
         <TopBar />
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-          {children}
-        </main>
+        <main className={styles.mainContainer}>{children}</main>
         <BottomBar />
       </body>
     </html>
