@@ -1,0 +1,15 @@
+.submit {
+  padding: 10px 15px;
+  font-weight: 700;
+  transition: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+  color: var(--rich-black);
+  background-color: var(--giants-orange);
+  border: none;
+  cursor: pointer;
+}
+
+.submit:hover {
+  font-size: 0.9em;
+}

@@ -1,6 +1,7 @@
 "use client";
 import { FormEvent } from "react";
 
+import Button from "@/components/Atoms/Button/Button";
 import CardPreview from "@/components/Molecules/CardPreview/CardPreview";
 import ChosingCardStyle from "@/components/Molecules/ChosingCardStyle/ChosingCardStyle";
 
@@ -23,7 +24,7 @@ const FormCreateCard = () => {
         <ChosingCardStyle />
         <CardPreview />
       </section>
-      <button type="submit">Send Kudo Card</button>
+      <Button type="submit">Send Kudo Card</Button>
     </form>
   );
 };
