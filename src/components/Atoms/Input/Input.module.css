@@ -1,3 +1,49 @@
+.inputColumnFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.inputColumnFlex label {
+  font-weight: 700;
+}
+
+.inputColumnFlex input,
+.inputColumnFlex textarea {
+  width: 100%;
+  border: none;
+  text-align: center;
+}
+
+.inputColumnFlex input {
+  border-bottom: 1px solid var(--moon-stone);
+}
+
+.inputColumnFlex textarea {
+  background: linear-gradient(to bottom, var(--moon-stone) 1px, transparent 1px)
+    0 0 / 100% 20px repeat-y;
+}
+
+.inputColumnFlex input:focus-visible,
+.inputColumnFlex textarea:focus-visible {
+  outline: none;
+}
+
+.inputColumnFlex input:focus-visible {
+  border-color: var(--giants-orange);
+}
+
+.inputColumnFlex textarea:focus-visible {
+  background: linear-gradient(
+      to bottom,
+      var(--giants-orange) 1px,
+      transparent 1px
+    )
+    0 0 / 100% 20px repeat-y;
+}
+
 .inputContainer {
   display: flex;
   flex-direction: row;

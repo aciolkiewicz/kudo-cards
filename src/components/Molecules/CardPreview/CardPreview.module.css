@@ -1,0 +1,29 @@
+.cardPreview {
+  border: 1px dashed var(--jonquil);
+  border-radius: 5%;
+  padding: 20px;
+}
+
+.jonquil {
+  background-color: var(--jonquil);
+}
+
+.giants-orange {
+  background-color: var(--giants-orange);
+}
+
+.red-pantone {
+  background-color: var(--red-pantone);
+}
+
+.rebecca-purple {
+  background-color: var(--rebecca-purple);
+}
+
+.moon-stone {
+  background-color: var(--moon-stone);
+}
+
+.rich-black {
+  background-color: var(--rich-black);
+}

@@ -17,7 +17,7 @@ const ChosingCardStyle = () => {
               key={title.name}
               type="radio"
               name={title.name}
-              value={title.value}
+              labelValue={title.value}
               group="cardTitle"
             />
           ))}
@@ -31,7 +31,7 @@ const ChosingCardStyle = () => {
               key={color.name}
               type="radio"
               name={color.name}
-              value={color.name}
+              labelValue={color.name}
               group="cardColor"
             />
           ))}
