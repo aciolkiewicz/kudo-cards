@@ -5,13 +5,29 @@ interface Properties {
   name: string;
   labelValue: string;
   group: string;
+  value: string;
+  onChange: () => void;
 }
 
-const Input = ({ type, name, labelValue, group }: Properties) => {
+const Input = ({
+  type,
+  name,
+  labelValue,
+  group,
+  value,
+  onChange,
+}: Properties) => {
   if (type === "radio") {
     return (
       <div className={styles.inputContainer}>
-        <input type={type} id={name} name={group} value={name} />
+        <input
+          type={type}
+          id={name}
+          name={group}
+          value={name}
+          checked={name === value}
+          onChange={onChange}
+        />
         {group === "cardColor" && (
           <label htmlFor={name}>
             <div className={`${styles.cardColor} ${styles[labelValue]}`} />
@@ -25,7 +41,13 @@ const Input = ({ type, name, labelValue, group }: Properties) => {
     return (
       <div className={styles.inputColumnFlex}>
         <label htmlFor={name}>{labelValue}</label>
-        <input type={type} id={name} name={group} value={name} />
+        <input
+          type={type}
+          id={name}
+          name={group}
+          value={value}
+          onChange={onChange}
+        />
       </div>
     );
   }
@@ -33,7 +55,13 @@ const Input = ({ type, name, labelValue, group }: Properties) => {
     return (
       <div className={styles.inputColumnFlex}>
         <label htmlFor={name}>{labelValue}</label>
-        <textarea id={name} name={group} value={name} rows={10} />
+        <textarea
+          id={name}
+          name={group}
+          value={value}
+          onChange={onChange}
+          rows={10}
+        />
       </div>
     );
   }

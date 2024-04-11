@@ -1,5 +1,6 @@
 "use client";
 import { FormEvent } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 
 import Button from "@/components/Atoms/Button/Button";
 import CardPreview from "@/components/Molecules/CardPreview/CardPreview";
@@ -8,24 +9,32 @@ import ChosingCardStyle from "@/components/Molecules/ChosingCardStyle/ChosingCar
 import styles from "./FormCreateCard.module.css";
 
 const FormCreateCard = () => {
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const methods = useForm({
+    defaultValues: {
+      cardTitle: "theBest",
+      cardColor: "jonquil",
+      to: "",
+      for: "",
+      from: "",
+    },
+  });
 
-    const formData = new FormData(event.currentTarget);
-    const response = await fetch("/api/create-card", {
-      method: "POST",
-      body: formData,
-    });
+  const { handleSubmit } = methods;
+
+  async function onSubmit(data: CardParameters) {
+    console.log(data);
   }
 
   return (
-    <form onSubmit={onSubmit} className={styles.formContainer}>
-      <section className={styles.interactiveSection}>
-        <ChosingCardStyle />
-        <CardPreview />
-      </section>
-      <Button type="submit">Send Kudo Card</Button>
-    </form>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
+        <section className={styles.interactiveSection}>
+          <ChosingCardStyle />
+          <CardPreview />
+        </section>
+        <Button type="submit">Send Kudo Card</Button>
+      </form>
+    </FormProvider>
   );
 };
 

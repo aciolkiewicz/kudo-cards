@@ -1,3 +1,5 @@
+import { Controller, useFormContext } from "react-hook-form";
+
 import Headings from "@/components/Atoms/Headings/Headings";
 import Input from "@/components/Atoms/Input/Input";
 import { cardColors, cardTitles } from "@/constants/index";
@@ -5,6 +7,8 @@ import { cardColors, cardTitles } from "@/constants/index";
 import styles from "./ChosingCardStyle.module.css";
 
 const ChosingCardStyle = () => {
+  const { control } = useFormContext();
+
   return (
     <>
       <section className={styles.cardTitlesContainer}>
@@ -13,12 +17,20 @@ const ChosingCardStyle = () => {
         </Headings>
         <section className={styles.styleSelection}>
           {cardTitles.map((title) => (
-            <Input
+            <Controller
               key={title.name}
-              type="radio"
-              name={title.name}
-              labelValue={title.value}
-              group="cardTitle"
+              name="cardTitle"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  type="radio"
+                  name={title.name}
+                  labelValue={title.value}
+                  group="cardTitle"
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
             />
           ))}
         </section>
@@ -27,12 +39,21 @@ const ChosingCardStyle = () => {
         </Headings>
         <section className={styles.styleSelection}>
           {cardColors.map((color) => (
-            <Input
+            <Controller
               key={color.name}
-              type="radio"
-              name={color.name}
-              labelValue={color.name}
-              group="cardColor"
+              name="cardColor"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  key={color.name}
+                  type="radio"
+                  name={color.name}
+                  labelValue={color.name}
+                  group="cardColor"
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
             />
           ))}
         </section>
