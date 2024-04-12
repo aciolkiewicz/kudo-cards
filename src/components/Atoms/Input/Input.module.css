@@ -24,6 +24,7 @@
 .inputColumnFlex textarea {
   background: linear-gradient(to bottom, var(--moon-stone) 1px, transparent 1px)
     0 0 / 100% 20px repeat-y;
+  line-height: 1.5em;
 }
 
 .inputColumnFlex input:focus-visible,

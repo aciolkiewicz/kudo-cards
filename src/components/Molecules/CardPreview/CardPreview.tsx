@@ -6,13 +6,15 @@ import Input from "@/components/Atoms/Input/Input";
 import styles from "./CardPreview.module.css";
 
 const CardPreview = () => {
-  const { control } = useFormContext();
+  const { control, watch } = useFormContext();
+  const cardTitle = watch("cardTitle");
+  const cardColor = watch("cardColor");
 
   return (
     <section className={styles.cardPreview}>
-      <section className={styles.cardTitle}>
-        <Headings level={3}>
-          <>Amazing!</>
+      <section className={`${styles.cardTitle} ${styles[cardColor]}`}>
+        <Headings level={3} customClass="cardTitle">
+          <>{cardTitle}</>
         </Headings>
       </section>
       <section className={styles.cardContent}>

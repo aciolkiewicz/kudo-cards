@@ -1,7 +1,5 @@
 .bottomBar {
   padding: 10px 0;
-  bottom: 0;
-  position: absolute;
   width: 100%;
   display: flex;
   justify-content: center;

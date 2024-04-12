@@ -35,6 +35,8 @@ body {
   margin: 0;
   padding: 0;
   color: var(--rich-black);
+  display: flex;
+  flex-direction: column;
 }
 
 a {

@@ -60,7 +60,7 @@ const Input = ({
           name={group}
           value={value}
           onChange={onChange}
-          rows={10}
+          rows={6}
         />
       </div>
     );
