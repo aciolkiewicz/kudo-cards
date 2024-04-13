@@ -5,20 +5,16 @@ import { revalidatePath } from "next/cache";
 import KudoCard from "../models/kudoCard.models";
 import { connectToDB } from "../mongoose";
 
-interface createCardParameters {
+interface Parameters {
   data: CardParameters;
-  path: string;
 }
 
-export async function createKudoCard({
-  data,
-  path,
-}: createCardParameters): Promise<void> {
+export async function createKudoCard({ data }: Parameters): Promise<void> {
   connectToDB();
 
   try {
     await KudoCard.findOneAndUpdate(data);
-    revalidatePath(path);
+    revalidatePath("./");
   } catch (error: any) {
     throw new Error(`Failed to create Kudo Card: ${error.message}`);
   }

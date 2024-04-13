@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const kudoCardSchema = new mongoose.Schema({
-  id: { type: String, required: true },
   cardTitle: { type: String, required: true },
   cardColor: { type: String, required: true },
   to: { type: String, required: true },

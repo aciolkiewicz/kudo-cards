@@ -2,6 +2,7 @@
 import { FormEvent } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
+import { createKudoCard } from "@/app/lib/actions/kudoCard.actions";
 import Button from "@/components/Atoms/Button/Button";
 import CardPreview from "@/components/Molecules/CardPreview/CardPreview";
 import ChosingCardStyle from "@/components/Molecules/ChosingCardStyle/ChosingCardStyle";
@@ -23,6 +24,7 @@ const FormCreateCard = () => {
 
   async function onSubmit(data: CardParameters) {
     console.log(data);
+    createKudoCard({ data });
   }
 
   return (
