@@ -2,6 +2,7 @@ import { Controller, useFormContext } from "react-hook-form";
 
 import Headings from "@/components/Atoms/Headings/Headings";
 import Input from "@/components/Atoms/Input/Input";
+import { cardTitles } from "@/constants/index";
 
 import styles from "./CardPreview.module.css";
 
@@ -9,12 +10,13 @@ const CardPreview = () => {
   const { control, watch } = useFormContext();
   const cardTitle = watch("cardTitle");
   const cardColor = watch("cardColor");
+  const cardObject = cardTitles.find((element) => element.name === cardTitle);
 
   return (
     <section className={styles.cardPreview}>
       <section className={`${styles.cardTitle} ${styles[cardColor]}`}>
         <Headings level={3} customClass="cardTitle">
-          <>{cardTitle}</>
+          <>{cardObject?.value || ""}</>
         </Headings>
       </section>
       <section className={styles.cardContent}>
