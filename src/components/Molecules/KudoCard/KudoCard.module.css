@@ -1,0 +1,41 @@
+.kudoCard {
+  min-width: 400px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  border: 1px dashed var(--jonquil);
+  border-radius: 5%;
+  padding: 20px;
+  text-align: center;
+}
+
+.cardTitle {
+  padding: 15px 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.jonquil {
+  background-color: var(--jonquil);
+}
+
+.giants-orange {
+  background-color: var(--giants-orange);
+}
+
+.red-pantone {
+  background-color: var(--red-pantone);
+}
+
+.rebecca-purple {
+  background-color: var(--rebecca-purple);
+}
+
+.moon-stone {
+  background-color: var(--moon-stone);
+}
+
+.rich-black {
+  background-color: var(--rich-black);
+}

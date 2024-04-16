@@ -1,4 +1,5 @@
 import Headings from "@/components/Atoms/Headings/Headings";
+import CardsBoard from "@/components/Organisms/CardsBoard/CardsBoard";
 
 export default function Home() {
   return (
@@ -6,6 +7,7 @@ export default function Home() {
       <Headings level={2}>
         <>Board</>
       </Headings>
+      <CardsBoard />
     </>
   );
 }

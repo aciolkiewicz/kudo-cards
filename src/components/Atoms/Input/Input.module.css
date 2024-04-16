@@ -15,6 +15,12 @@
   width: 100%;
   border: none;
   text-align: center;
+  cursor: default;
+}
+
+.inputColumnFlex.editable input,
+.inputColumnFlex.editable textarea {
+  cursor: text;
 }
 
 .inputColumnFlex input {
@@ -33,11 +39,11 @@
   outline: none;
 }
 
-.inputColumnFlex input:focus-visible {
+.inputColumnFlex.editable input:focus-visible {
   border-color: var(--giants-orange);
 }
 
-.inputColumnFlex textarea:focus-visible {
+.inputColumnFlex.editable textarea:focus-visible {
   background: linear-gradient(
       to bottom,
       var(--giants-orange) 1px,

@@ -31,6 +31,7 @@ const CardPreview = () => {
               group="to"
               value={value}
               onChange={onChange}
+              maxLength={20}
             />
           )}
         />
@@ -45,6 +46,7 @@ const CardPreview = () => {
               group="for"
               value={value}
               onChange={onChange}
+              maxLength={300}
             />
           )}
         />
@@ -59,6 +61,7 @@ const CardPreview = () => {
               group="from"
               value={value}
               onChange={onChange}
+              maxLength={20}
             />
           )}
         />

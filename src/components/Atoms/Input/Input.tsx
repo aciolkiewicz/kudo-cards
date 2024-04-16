@@ -6,7 +6,9 @@ interface Properties {
   labelValue: string;
   group: string;
   value: string;
-  onChange: () => void;
+  onChange?: () => void;
+  readOnly?: boolean;
+  maxLength?: number;
 }
 
 const Input = ({
@@ -16,6 +18,8 @@ const Input = ({
   group,
   value,
   onChange,
+  readOnly,
+  maxLength,
 }: Properties) => {
   if (type === "radio") {
     return (
@@ -27,6 +31,7 @@ const Input = ({
           value={name}
           checked={name === value}
           onChange={onChange}
+          readOnly={readOnly}
         />
         {group === "cardColor" && (
           <label htmlFor={name}>
@@ -39,7 +44,8 @@ const Input = ({
   }
   if (type === "text") {
     return (
-      <div className={styles.inputColumnFlex}>
+      <div
+        className={`${styles.inputColumnFlex} ${!readOnly ? styles.editable : null}`}>
         <label htmlFor={name}>{labelValue}</label>
         <input
           type={type}
@@ -47,20 +53,25 @@ const Input = ({
           name={group}
           value={value}
           onChange={onChange}
+          readOnly={readOnly}
+          maxLength={maxLength}
         />
       </div>
     );
   }
   if (type === "textarea") {
     return (
-      <div className={styles.inputColumnFlex}>
+      <div
+        className={`${styles.inputColumnFlex} ${!readOnly ? styles.editable : null}`}>
         <label htmlFor={name}>{labelValue}</label>
         <textarea
           id={name}
           name={group}
           value={value}
           onChange={onChange}
+          readOnly={readOnly}
           rows={6}
+          maxLength={maxLength}
         />
       </div>
     );
