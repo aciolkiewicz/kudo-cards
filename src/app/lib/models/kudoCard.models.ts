@@ -7,7 +7,7 @@ const kudoCardSchema = new mongoose.Schema({
   for: { type: String, required: true },
   from: { type: String },
   created: { type: String, required: true },
-  id: { type: String },
+  _id: { type: String },
 });
 
 const KudoCard =

@@ -7,5 +7,5 @@ export const UserValidation = z.object({
   for: z.string().min(3).max(250),
   from: z.string().max(40),
   created: z.string(),
-  id: z.string(),
+  _id: z.string(),
 });

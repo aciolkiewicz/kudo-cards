@@ -5,5 +5,5 @@ interface CardParameters {
   for: string;
   from: string;
   created: string;
-  id?: string;
+  _id?: string;
 }

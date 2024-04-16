@@ -1,5 +1,6 @@
 "use client";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
+import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 import { createKudoCard } from "@/app/lib/actions/kudoCard.actions";
@@ -10,6 +11,8 @@ import ChosingCardStyle from "@/components/Molecules/ChosingCardStyle/ChosingCar
 import styles from "./FormCreateCard.module.css";
 
 const FormCreateCard = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const todayDate = new Date().toLocaleDateString();
   const initialFormValues = {
     cardTitle: "theBest",
@@ -27,6 +30,7 @@ const FormCreateCard = () => {
   const { handleSubmit, reset } = methods;
 
   async function onSubmit(data: CardParameters) {
+    setIsLoading(true);
     try {
       await createKudoCard({ data });
 
@@ -38,6 +42,8 @@ const FormCreateCard = () => {
       enqueueSnackbar(error as string, {
         variant: "error",
       });
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -49,7 +55,9 @@ const FormCreateCard = () => {
           <ChosingCardStyle />
           <CardPreview />
         </section>
-        <Button type="submit">Send Kudo Card</Button>
+        <Button type="submit" disabled={isLoading}>
+          Send Kudo Card
+        </Button>
       </form>
     </FormProvider>
   );
