@@ -13,7 +13,7 @@ import styles from "./FormCreateCard.module.css";
 const FormCreateCard = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const todayDate = new Date().toLocaleDateString();
+  const todayDate = new Date().toISOString();
   const initialFormValues = {
     cardTitle: "theBest",
     cardColor: "jonquil",
