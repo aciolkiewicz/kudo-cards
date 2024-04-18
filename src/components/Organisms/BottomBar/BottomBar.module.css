@@ -1,7 +1,12 @@
 .bottomBar {
-  padding: 10px 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.carouselContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
