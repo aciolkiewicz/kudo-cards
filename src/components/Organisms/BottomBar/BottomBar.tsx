@@ -8,15 +8,17 @@ const BottomBar = () => {
   return (
     <footer className={styles.bottomBar}>
       <section className={styles.carouselContainer}>
-        {quots.map((quot) => (
-          <Typography customClass="textCenter" key={quot.sentence}>
-            <>
-              <StrongText>{`"`}</StrongText>
-              {quot.sentence}
-              <StrongText>{`" - ${quot.author}`}</StrongText>
-            </>
-          </Typography>
-        ))}
+        <div className={styles.sliders}>
+          {quots.map((quot) => (
+            <Typography customClass="textCenter" key={quot.sentence}>
+              <>
+                <StrongText>{`"`}</StrongText>
+                {quot.sentence}
+                <StrongText>{`" - ${quot.author}`}</StrongText>
+              </>
+            </Typography>
+          ))}
+        </div>
       </section>
     </footer>
   );
