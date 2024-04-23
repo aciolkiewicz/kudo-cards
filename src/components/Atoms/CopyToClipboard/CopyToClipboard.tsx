@@ -1,9 +1,9 @@
 interface Properties {
-  lastCardId: string;
+  value: string;
 }
 
-const CopyToClipboard = ({ lastCardId }: Properties) => {
-  return <div>{lastCardId}</div>;
+const CopyToClipboard = ({ value }: Properties) => {
+  return <div>{value}</div>;
 };
 
 export default CopyToClipboard;

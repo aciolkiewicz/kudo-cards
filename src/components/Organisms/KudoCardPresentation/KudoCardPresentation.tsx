@@ -4,6 +4,7 @@ import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useEffect, useState } from "react";
 
 import { fetchKudoCard } from "@/app/lib/actions/kudoCard.actions";
+import CopyToClipboard from "@/components/Atoms/CopyToClipboard/CopyToClipboard";
 import Typography from "@/components/Atoms/Typography/Typography";
 import KudoCard from "@/components/Molecules/KudoCard/KudoCard";
 
@@ -38,6 +39,7 @@ const KudoCardPresentation = ({ cardId }: Parameters) => {
   if ("cardTitle" in kudoCardSaved) {
     return (
       <section className={styles.presentationContainer}>
+        <CopyToClipboard value={cardId} />
         <KudoCard kudoCard={kudoCardSaved} />
       </section>
     );
