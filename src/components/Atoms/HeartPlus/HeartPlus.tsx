@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { enqueueSnackbar } from "notistack";
+import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useState } from "react";
 
 import { addHeart, fetchKudoCard } from "@/app/lib/actions/kudoCard.actions";
@@ -25,12 +25,15 @@ const HeartPlus = ({ cardId, hearts }: Properties) => {
       } catch (error) {
         enqueueSnackbar(error as string, {
           variant: "error",
+          preventDuplicate: true,
         });
       }
     }
   };
   return (
     <div className={styles.heartPlus}>
+      <SnackbarProvider maxSnack={1} />
+
       <Image
         src="/icons/heart_plus.svg"
         alt="Send heart"

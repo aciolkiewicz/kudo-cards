@@ -1,6 +1,6 @@
 "use client";
 
-import { enqueueSnackbar } from "notistack";
+import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useEffect, useState } from "react";
 
 import { fetchKudoCards } from "@/app/lib/actions/kudoCard.actions";
@@ -21,6 +21,7 @@ const CardsBoard = () => {
     } catch (error) {
       enqueueSnackbar(error as string, {
         variant: "error",
+        preventDuplicate: true,
       });
     } finally {
       setIsLoading(false);
@@ -42,6 +43,7 @@ const CardsBoard = () => {
   if (!isLoading && kudoCards.length === 0) {
     return (
       <section className={styles.cardsBoard}>
+        <SnackbarProvider maxSnack={1} />
         <Typography>
           <>Kudo Cards not found.</>
         </Typography>

@@ -42,6 +42,7 @@ const FormCreateCard = () => {
     } catch (error) {
       enqueueSnackbar(error as string, {
         variant: "error",
+        preventDuplicate: true,
       });
     } finally {
       setIsLoading(false);
@@ -51,7 +52,7 @@ const FormCreateCard = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
-        <SnackbarProvider />
+        <SnackbarProvider maxSnack={1} />
         <section className={styles.interactiveSection}>
           <ChosingCardStyle />
           <CardPreview />

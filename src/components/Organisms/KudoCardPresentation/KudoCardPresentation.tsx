@@ -1,6 +1,6 @@
 "use client";
 
-import { enqueueSnackbar } from "notistack";
+import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useEffect, useState } from "react";
 
 import { fetchKudoCard } from "@/app/lib/actions/kudoCard.actions";
@@ -25,6 +25,7 @@ const KudoCardPresentation = ({ cardId }: Parameters) => {
       } catch (error) {
         enqueueSnackbar(error as string, {
           variant: "error",
+          preventDuplicate: true,
         });
       }
     }
@@ -43,9 +44,12 @@ const KudoCardPresentation = ({ cardId }: Parameters) => {
   }
 
   return (
-    <Typography>
-      <>Kudo Card not found!</>
-    </Typography>
+    <>
+      <SnackbarProvider maxSnack={1} />
+      <Typography>
+        <>Kudo Card not found!</>
+      </Typography>
+    </>
   );
 };
 
