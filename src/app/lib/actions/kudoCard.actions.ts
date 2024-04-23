@@ -7,6 +7,10 @@ interface CreateCardParameters {
   data: CardParameters;
 }
 
+interface fetchKudoCardParameters {
+  cardId: string;
+}
+
 export async function createKudoCard({
   data,
 }: CreateCardParameters): Promise<void> {
@@ -44,5 +48,19 @@ export async function fetchKudoCards(): Promise<CardParameters[]> {
     return kudoCards as CardParameters[];
   } catch (error: any) {
     throw new Error(`Failed to get Kudo Cards: ${error.message}`);
+  }
+}
+
+export async function fetchKudoCard({
+  cardId,
+}: fetchKudoCardParameters): Promise<CardParameters> {
+  connectToDB();
+
+  try {
+    const kudoCard = await KudoCard.findById(cardId);
+
+    return kudoCard as CardParameters;
+  } catch (error: any) {
+    throw new Error(`Failed to get Kudo Card ${cardId}: ${error.message}`);
   }
 }

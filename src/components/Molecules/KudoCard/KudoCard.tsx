@@ -1,4 +1,5 @@
 import Headings from "@/components/Atoms/Headings/Headings";
+import HeartPlus from "@/components/Atoms/HeartPlus/HeartPlus";
 import Input from "@/components/Atoms/Input/Input";
 import { cardTitles } from "@/constants/index";
 
@@ -19,6 +20,7 @@ const KudoCard = ({ kudoCard }: Parameters) => {
         <Headings level={3} customClass="cardTitle">
           <>{cardObject?.value || ""}</>
         </Headings>
+        <HeartPlus hearts={kudoCard.hearts} />
       </section>
       <section className={styles.cardContent}>
         <Input

@@ -20,6 +20,7 @@ const FormCreateCard = () => {
     to: "",
     for: "",
     from: "",
+    hearts: 0,
     created: todayDate,
   };
 
