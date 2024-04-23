@@ -2,7 +2,7 @@ import Image from "next/image";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useState } from "react";
 
-import { addHeart, fetchKudoCard } from "@/app/lib/actions/kudoCard.actions";
+import { addHeart } from "@/app/lib/actions/kudoCard.actions";
 
 import StrongText from "../StrongText/StrongText";
 import Typography from "../Typography/Typography";
@@ -18,10 +18,12 @@ const HeartPlus = ({ cardId, hearts }: Properties) => {
   const addHeartHandler = async () => {
     if (hearts === heartsSaved) {
       try {
-        await addHeart({ cardId: cardId, hearts: heartsSaved });
-        const kudoCard = await fetchKudoCard({ cardId: cardId });
+        const kudoCardHearts = await addHeart({
+          cardId: cardId,
+          hearts: heartsSaved,
+        });
 
-        setHeartsSaved(kudoCard.hearts);
+        setHeartsSaved(kudoCardHearts);
       } catch (error) {
         enqueueSnackbar(error as string, {
           variant: "error",

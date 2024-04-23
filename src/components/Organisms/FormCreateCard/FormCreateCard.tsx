@@ -5,6 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 
 import { createKudoCard } from "@/app/lib/actions/kudoCard.actions";
 import Button from "@/components/Atoms/Button/Button";
+import CopyToClipboard from "@/components/Atoms/CopyToClipboard/CopyToClipboard";
 import CardPreview from "@/components/Molecules/CardPreview/CardPreview";
 import ChosingCardStyle from "@/components/Molecules/ChosingCardStyle/ChosingCardStyle";
 
@@ -12,6 +13,7 @@ import styles from "./FormCreateCard.module.css";
 
 const FormCreateCard = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [lastCardId, setLastCardId] = useState("");
 
   const todayDate = new Date().toISOString();
   const initialFormValues = {
@@ -33,12 +35,16 @@ const FormCreateCard = () => {
   async function onSubmit(data: CardParameters) {
     setIsLoading(true);
     try {
-      await createKudoCard({ data });
+      const createdKudoCard = await createKudoCard({ data });
 
       enqueueSnackbar("Kudo Card created.", {
         variant: "success",
       });
       reset(initialFormValues);
+
+      if (createdKudoCard._id) {
+        setLastCardId(createdKudoCard._id);
+      }
     } catch (error) {
       enqueueSnackbar(error as string, {
         variant: "error",
@@ -60,6 +66,7 @@ const FormCreateCard = () => {
         <Button type="submit" disabled={isLoading}>
           Send Kudo Card
         </Button>
+        {lastCardId && <CopyToClipboard lastCardId={lastCardId} />}
       </form>
     </FormProvider>
   );
