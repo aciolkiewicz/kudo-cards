@@ -11,6 +11,11 @@ interface fetchKudoCardParameters {
   cardId: string;
 }
 
+interface AddHeartParameters {
+  cardId: string;
+  hearts: number;
+}
+
 export async function createKudoCard({
   data,
 }: CreateCardParameters): Promise<void> {
@@ -62,5 +67,23 @@ export async function fetchKudoCard({
     return kudoCard as CardParameters;
   } catch (error: any) {
     throw new Error(`Failed to get Kudo Card ${cardId}: ${error.message}`);
+  }
+}
+
+export async function addHeart({
+  cardId,
+  hearts,
+}: AddHeartParameters): Promise<void> {
+  connectToDB();
+
+  try {
+    await KudoCard.findOneAndUpdate(
+      { _id: cardId },
+      {
+        hearts: hearts + 1,
+      }
+    );
+  } catch (error: any) {
+    throw new Error(`Failed to add heart: ${error.message}`);
   }
 }

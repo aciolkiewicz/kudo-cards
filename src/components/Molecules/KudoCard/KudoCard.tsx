@@ -20,7 +20,9 @@ const KudoCard = ({ kudoCard }: Parameters) => {
         <Headings level={3} customClass="cardTitle">
           <>{cardObject?.value || ""}</>
         </Headings>
-        <HeartPlus hearts={kudoCard.hearts} />
+        {kudoCard?._id && (
+          <HeartPlus cardId={kudoCard._id} hearts={kudoCard.hearts} />
+        )}
       </section>
       <section className={styles.cardContent}>
         <Input
