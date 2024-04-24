@@ -44,7 +44,7 @@ const KudoCardPresentation = ({ cardId }: Parameters) => {
     getKudoCard();
   }, [cardId]);
 
-  if ("cardTitle" in kudoCardSaved) {
+  if (kudoCardSaved && "cardTitle" in kudoCardSaved) {
     return (
       <section className={styles.presentationContainer}>
         <Headings level={3} customClass="resetMargins">
