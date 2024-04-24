@@ -1,9 +1,18 @@
+import Typography from "../Typography/Typography";
+import styles from "./CopyToClipboard.module.css";
+
 interface Properties {
-  value: string;
+  valueToCopy: string;
 }
 
-const CopyToClipboard = ({ value }: Properties) => {
-  return <div>{value}</div>;
+const CopyToClipboard = ({ valueToCopy }: Properties) => {
+  return (
+    <section className={styles.copyToClipboard}>
+      <Typography customClass="cornsilkMarginReset">
+        <>{valueToCopy}</>
+      </Typography>
+    </section>
+  );
 };
 
 export default CopyToClipboard;

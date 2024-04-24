@@ -1,10 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useEffect, useState } from "react";
 
 import { fetchKudoCard } from "@/app/lib/actions/kudoCard.actions";
 import CopyToClipboard from "@/components/Atoms/CopyToClipboard/CopyToClipboard";
+import Headings from "@/components/Atoms/Headings/Headings";
 import Typography from "@/components/Atoms/Typography/Typography";
 import KudoCard from "@/components/Molecules/KudoCard/KudoCard";
 
@@ -16,6 +18,8 @@ interface Parameters {
 
 const KudoCardPresentation = ({ cardId }: Parameters) => {
   const [kudoCardSaved, setKudoCardSaved] = useState<CardParameters | {}>({});
+  const pathname = usePathname();
+  const fullURL = `${window.location.origin}${pathname}`;
 
   const getKudoCard = async () => {
     if (cardId) {
@@ -39,7 +43,10 @@ const KudoCardPresentation = ({ cardId }: Parameters) => {
   if ("cardTitle" in kudoCardSaved) {
     return (
       <section className={styles.presentationContainer}>
-        <CopyToClipboard value={cardId} />
+        <Headings level={3} customClass="resetMargins">
+          <>Copy the link and share the Kudo Card</>
+        </Headings>
+        <CopyToClipboard valueToCopy={fullURL} />
         <KudoCard kudoCard={kudoCardSaved} />
       </section>
     );

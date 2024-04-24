@@ -1,0 +1,6 @@
+.copyToClipboard {
+  background-color: var(--moon-stone);
+  border-radius: 5px;
+  opacity: 0.5;
+  padding: 10px 20px;
+}

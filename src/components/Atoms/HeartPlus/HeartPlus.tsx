@@ -44,7 +44,7 @@ const HeartPlus = ({ cardId, hearts }: Properties) => {
         className={`${styles.heartPlusIcon} ${hearts !== heartsSaved && styles.heartAdded}`}
         onClick={addHeartHandler}
       />
-      <Typography customClass="heartCount">
+      <Typography customClass="cornsilkMarginReset">
         <>
           <StrongText>{`${heartsSaved}`}</StrongText> times loved
         </>
