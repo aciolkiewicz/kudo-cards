@@ -6,7 +6,7 @@ import { FormProvider, useForm } from "react-hook-form";
 
 import { createKudoCard } from "@/app/lib/actions/kudoCard.actions";
 import Button from "@/components/Atoms/Button/Button";
-import CardPreview from "@/components/Molecules/CardPreview/CardPreview";
+import CardForm from "@/components/Molecules/CardForm/CardForm";
 import ChosingCardStyle from "@/components/Molecules/ChosingCardStyle/ChosingCardStyle";
 
 import styles from "./FormCreateCard.module.css";
@@ -60,7 +60,7 @@ const FormCreateCard = () => {
         <SnackbarProvider maxSnack={1} />
         <section className={styles.interactiveSection}>
           <ChosingCardStyle />
-          <CardPreview />
+          <CardForm />
         </section>
         <Button type="submit" disabled={isLoading}>
           Send Kudo Card

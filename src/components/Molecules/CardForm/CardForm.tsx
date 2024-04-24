@@ -4,16 +4,16 @@ import Headings from "@/components/Atoms/Headings/Headings";
 import Input from "@/components/Atoms/Input/Input";
 import { cardTitles } from "@/constants/index";
 
-import styles from "./CardPreview.module.css";
+import styles from "./CardForm.module.css";
 
-const CardPreview = () => {
+const CardForm = () => {
   const { control, watch } = useFormContext();
   const cardTitle = watch("cardTitle");
   const cardColor = watch("cardColor");
   const cardObject = cardTitles.find((element) => element.name === cardTitle);
 
   return (
-    <section className={styles.cardPreview}>
+    <section className={styles.cardForm}>
       <section className={`${styles.cardTitle} ${styles[cardColor]}`}>
         <Headings level={3} customClass="cardTitle">
           <>{cardObject?.value || ""}</>
@@ -70,4 +70,4 @@ const CardPreview = () => {
   );
 };
 
-export default CardPreview;
+export default CardForm;
