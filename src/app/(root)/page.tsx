@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Headings level={2}>
-        <>Board</>
+        <>Last month&apos;s Kudo Cards</>
       </Headings>
       <CardsBoard />
     </>

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { fetchKudoCard } from "@/app/lib/actions/kudoCard.actions";
 import CopyToClipboard from "@/components/Atoms/CopyToClipboard/CopyToClipboard";
 import Headings from "@/components/Atoms/Headings/Headings";
+import Loading from "@/components/Atoms/Loading/Loading";
 import Typography from "@/components/Atoms/Typography/Typography";
 import KudoCard from "@/components/Molecules/KudoCard/KudoCard";
 
@@ -17,6 +18,7 @@ interface Parameters {
 }
 
 const KudoCardPresentation = ({ cardId }: Parameters) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [kudoCardSaved, setKudoCardSaved] = useState<CardParameters | {}>({});
   const pathname = usePathname();
   const fullURL = `${window?.location?.origin}${pathname}` || "";
@@ -32,6 +34,8 @@ const KudoCardPresentation = ({ cardId }: Parameters) => {
           variant: "error",
           preventDuplicate: true,
         });
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -48,6 +52,14 @@ const KudoCardPresentation = ({ cardId }: Parameters) => {
         </Headings>
         <CopyToClipboard valueToCopy={fullURL} />
         <KudoCard kudoCard={kudoCardSaved} />
+      </section>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <section>
+        <Loading />
       </section>
     );
   }
