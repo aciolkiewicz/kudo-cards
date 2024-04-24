@@ -19,7 +19,7 @@ interface Parameters {
 const KudoCardPresentation = ({ cardId }: Parameters) => {
   const [kudoCardSaved, setKudoCardSaved] = useState<CardParameters | {}>({});
   const pathname = usePathname();
-  const fullURL = `${window.location.origin}${pathname}`;
+  const fullURL = `${window?.location?.origin}${pathname}` || "";
 
   const getKudoCard = async () => {
     if (cardId) {
