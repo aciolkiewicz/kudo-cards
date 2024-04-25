@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useState } from "react";
+import { MouseEvent } from "react";
 
 import { addHeart } from "@/app/lib/actions/kudoCard.actions";
 
@@ -15,7 +16,9 @@ interface Properties {
 
 const HeartPlus = ({ cardId, hearts }: Properties) => {
   const [heartsSaved, setHeartsSaved] = useState(hearts);
-  const addHeartHandler = async () => {
+  const addHeartHandler = async (event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+
     if (hearts === heartsSaved) {
       try {
         const kudoCardHearts = await addHeart({
@@ -42,7 +45,7 @@ const HeartPlus = ({ cardId, hearts }: Properties) => {
         width={25}
         height={25}
         className={`${styles.heartPlusIcon} ${hearts !== heartsSaved && styles.heartAdded}`}
-        onClick={addHeartHandler}
+        onClick={(event) => addHeartHandler(event)}
       />
       <Typography customClass="cornsilkMarginReset">
         <>

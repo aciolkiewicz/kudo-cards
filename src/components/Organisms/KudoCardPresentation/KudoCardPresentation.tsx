@@ -65,12 +65,12 @@ const KudoCardPresentation = ({ cardId }: Parameters) => {
   }
 
   return (
-    <>
+    <section className={styles.presentationContainer}>
       <SnackbarProvider maxSnack={1} />
-      <Typography>
+      <Typography customClass="error">
         <>Kudo Card not found!</>
       </Typography>
-    </>
+    </section>
   );
 };
 

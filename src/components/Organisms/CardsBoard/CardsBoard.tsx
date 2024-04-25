@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useEffect, useState } from "react";
 
@@ -44,8 +45,8 @@ const CardsBoard = () => {
     return (
       <section className={styles.cardsBoard}>
         <SnackbarProvider maxSnack={1} />
-        <Typography>
-          <>Kudo Cards not found.</>
+        <Typography customClass="error">
+          <>Kudo Cards not found!</>
         </Typography>
       </section>
     );
@@ -54,7 +55,9 @@ const CardsBoard = () => {
   return (
     <section className={styles.cardsBoard}>
       {kudoCards.map((kudoCard) => (
-        <KudoCard key={kudoCard._id} kudoCard={kudoCard} />
+        <Link key={kudoCard._id} href={`/kudo-card/${kudoCard._id}`}>
+          <KudoCard kudoCard={kudoCard} />
+        </Link>
       ))}
     </section>
   );

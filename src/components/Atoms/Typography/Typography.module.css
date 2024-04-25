@@ -6,3 +6,10 @@
   color: var(--cornsilk);
   margin: 0;
 }
+
+.error {
+  text-align: center;
+  color: var(--red-pantone);
+  font-size: 2em;
+  font-weight: 700;
+}
