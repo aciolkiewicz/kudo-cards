@@ -58,7 +58,7 @@ const KudoCardPresentation = ({ cardId }: Parameters) => {
 
   if (isLoading) {
     return (
-      <section>
+      <section className={styles.presentationContainer}>
         <Loading />
       </section>
     );

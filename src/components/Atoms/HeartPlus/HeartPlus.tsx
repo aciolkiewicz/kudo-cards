@@ -16,11 +16,13 @@ interface Properties {
 
 const HeartPlus = ({ cardId, hearts }: Properties) => {
   const [heartsSaved, setHeartsSaved] = useState(hearts);
+  const [isLoading, setIsLoading] = useState(false);
   const addHeartHandler = async (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
 
     if (hearts === heartsSaved) {
       try {
+        setIsLoading(true);
         const kudoCardHearts = await addHeart({
           cardId: cardId,
           hearts: heartsSaved,
@@ -32,6 +34,8 @@ const HeartPlus = ({ cardId, hearts }: Properties) => {
           variant: "error",
           preventDuplicate: true,
         });
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -44,7 +48,7 @@ const HeartPlus = ({ cardId, hearts }: Properties) => {
         alt="Send heart"
         width={25}
         height={25}
-        className={`${styles.heartPlusIcon} ${hearts !== heartsSaved && styles.heartAdded}`}
+        className={`${styles.heartPlusIcon} ${(hearts !== heartsSaved || isLoading) && styles.heartAdded}`}
         onClick={(event) => addHeartHandler(event)}
       />
       <Typography customClass="cornsilkMarginReset">
