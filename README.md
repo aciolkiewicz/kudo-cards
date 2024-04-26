@@ -1,13 +1,12 @@
 # Kudo Cards
 
-Board for kudo cards with possibility to create new kudos.
+The application to create kudo cards and keep them on the board. User is able to share specific kudo card and give thanks to teammates. 
 
 ## Used Stuff
 
 - Next.js
 - React.js
 - TypeScript
-- Redux Toolkit
 - MongoDB
 - Zod
 - Atomic Design
