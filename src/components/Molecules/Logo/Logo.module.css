@@ -2,3 +2,9 @@
   display: flex;
   font-size: 1.5em;
 }
+
+@media (max-width: 480px) {
+  .logoContainer {
+    font-size: 1em;
+  }
+}

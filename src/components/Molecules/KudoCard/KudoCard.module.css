@@ -10,6 +10,12 @@
   text-align: center;
 }
 
+@media (max-width: 480px) {
+  .kudoCard {
+    min-width: 300px;
+  }
+}
+
 .cardTitle {
   padding: 15px 0;
   border-top-left-radius: 10px;

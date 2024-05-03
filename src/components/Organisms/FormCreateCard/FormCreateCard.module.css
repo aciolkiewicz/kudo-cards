@@ -15,5 +15,7 @@
 @media (max-width: 800px) {
   .interactiveSection {
     grid-template-columns: 100%;
+    gap: 10px;
+    justify-items: center;
   }
 }

@@ -25,6 +25,7 @@
 .button p {
   padding: 5px 10px;
   font-weight: 700;
+  text-align: center;
   transition: all;
   transition-duration: 0.5s;
   transition-timing-function: ease-in;
