@@ -12,3 +12,5 @@ The application to create kudo cards and keep them on the board. User is able to
 - Atomic Design
 
 ## Deployed version
+
+https://kudo-cards-adi.netlify.app/
