@@ -18,9 +18,17 @@ const CardsBoard = () => {
   const fetcKudoCardshHandler = async () => {
     try {
       const data = await fetchKudoCards();
-      setKudoCards(data);
+
+      if (typeof data === "object" && "error" in data) {
+        enqueueSnackbar(data.error, {
+          variant: "error",
+          preventDuplicate: true,
+        });
+      } else {
+        setKudoCards(data);
+      }
     } catch (error) {
-      enqueueSnackbar(error as string, {
+      enqueueSnackbar("An unexpected error occurred.", {
         variant: "error",
         preventDuplicate: true,
       });

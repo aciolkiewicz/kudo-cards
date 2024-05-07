@@ -16,20 +16,24 @@ interface AddHeartParameters {
   hearts: number;
 }
 
+type ErrorResponse = { error: string };
+
 export async function createKudoCard({
   data,
-}: CreateCardParameters): Promise<CardParameters> {
+}: CreateCardParameters): Promise<CardParameters | ErrorResponse> {
   connectToDB();
 
   try {
     const createdKudoCard = await KudoCard.create(data);
     return createdKudoCard;
   } catch (error: any) {
-    throw new Error(`Failed to create Kudo Card: ${error.message}`);
+    return { error: `Failed to create Kudo Card: ${error.message}` };
   }
 }
 
-export async function fetchKudoCards(): Promise<CardParameters[]> {
+export async function fetchKudoCards(): Promise<
+  CardParameters[] | ErrorResponse
+> {
   connectToDB();
 
   try {
@@ -53,13 +57,13 @@ export async function fetchKudoCards(): Promise<CardParameters[]> {
 
     return kudoCards as CardParameters[];
   } catch (error: any) {
-    throw new Error(`Failed to get Kudo Cards: ${error.message}`);
+    return { error: `Failed to get Kudo Cards: ${error.message}` };
   }
 }
 
 export async function fetchKudoCard({
   cardId,
-}: fetchKudoCardParameters): Promise<CardParameters> {
+}: fetchKudoCardParameters): Promise<CardParameters | ErrorResponse> {
   connectToDB();
 
   try {
@@ -67,14 +71,14 @@ export async function fetchKudoCard({
 
     return kudoCard as CardParameters;
   } catch (error: any) {
-    throw new Error(`Failed to get Kudo Card ${cardId}: ${error.message}`);
+    return { error: `Failed to get Kudo Card ${cardId}: ${error.message}` };
   }
 }
 
 export async function addHeart({
   cardId,
   hearts,
-}: AddHeartParameters): Promise<number> {
+}: AddHeartParameters): Promise<number | ErrorResponse> {
   connectToDB();
 
   try {
@@ -87,6 +91,6 @@ export async function addHeart({
 
     return updatedKudoCard.hearts + 1;
   } catch (error: any) {
-    throw new Error(`Failed to add heart: ${error.message}`);
+    return { error: `Failed to add heart: ${error.message}` };
   }
 }

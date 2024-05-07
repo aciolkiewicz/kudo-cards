@@ -37,15 +37,22 @@ const FormCreateCard = () => {
     try {
       const createdKudoCard = await createKudoCard({ data });
 
-      enqueueSnackbar("Kudo Card created.", {
-        variant: "success",
-      });
+      if (typeof createdKudoCard === "object" && "error" in createdKudoCard) {
+        enqueueSnackbar(createdKudoCard.error, {
+          variant: "error",
+          preventDuplicate: true,
+        });
+      } else {
+        enqueueSnackbar("Kudo Card created.", {
+          variant: "success",
+        });
 
-      if (createdKudoCard._id) {
-        router.push(`/kudo-card/${createdKudoCard._id}`);
+        if (createdKudoCard._id) {
+          router.push(`/kudo-card/${createdKudoCard._id}`);
+        }
       }
     } catch (error) {
-      enqueueSnackbar(error as string, {
+      enqueueSnackbar("An unexpected error occurred.", {
         variant: "error",
         preventDuplicate: true,
       });

@@ -28,9 +28,16 @@ const HeartPlus = ({ cardId, hearts }: Properties) => {
           hearts: heartsSaved,
         });
 
-        setHeartsSaved(kudoCardHearts);
+        if (typeof kudoCardHearts === "object" && "error" in kudoCardHearts) {
+          enqueueSnackbar(kudoCardHearts.error, {
+            variant: "error",
+            preventDuplicate: true,
+          });
+        } else {
+          setHeartsSaved(kudoCardHearts);
+        }
       } catch (error) {
-        enqueueSnackbar(error as string, {
+        enqueueSnackbar("An unexpected error occurred.", {
           variant: "error",
           preventDuplicate: true,
         });

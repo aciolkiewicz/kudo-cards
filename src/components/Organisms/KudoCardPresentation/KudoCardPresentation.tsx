@@ -28,9 +28,16 @@ const KudoCardPresentation = ({ cardId }: Parameters) => {
       try {
         const kudoCard = await fetchKudoCard({ cardId: cardId });
 
-        setKudoCardSaved(kudoCard);
+        if (typeof kudoCard === "object" && "error" in kudoCard) {
+          enqueueSnackbar(kudoCard.error, {
+            variant: "error",
+            preventDuplicate: true,
+          });
+        } else {
+          setKudoCardSaved(kudoCard);
+        }
       } catch (error) {
-        enqueueSnackbar(error as string, {
+        enqueueSnackbar("An unexpected error occurred.", {
           variant: "error",
           preventDuplicate: true,
         });
