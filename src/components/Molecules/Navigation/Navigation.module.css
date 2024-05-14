@@ -17,7 +17,8 @@
   text-underline-offset: 4px;
 }
 
-.standard:hover {
+.standard:hover,
+.standard.active {
   text-decoration: underline;
   text-underline-offset: 1px;
 }
@@ -33,7 +34,8 @@
   border: 2px solid var(--moon-stone);
 }
 
-.button:hover p {
+.button:hover p,
+.button.active p {
   color: var(--cornsilk);
   background-color: var(--moon-stone);
 }

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import Typography from "@/components/Atoms/Typography/Typography";
 import { mainNavLinks } from "@/constants/index.js";
@@ -6,6 +9,8 @@ import { mainNavLinks } from "@/constants/index.js";
 import styles from "./Navigation.module.css";
 
 const Navigation = () => {
+  const pathname = usePathname();
+
   return (
     <nav>
       <ul className={styles.navList}>
@@ -14,7 +19,7 @@ const Navigation = () => {
             <Link
               href={navLink.route}
               title={navLink.label}
-              className={styles[navLink.linkType]}>
+              className={`${styles[navLink.linkType]} ${navLink.route === pathname && styles.active}`}>
               <Typography>
                 <>{navLink.label}</>
               </Typography>
