@@ -24,6 +24,7 @@ export async function createKudoCard({
   connectToDB();
 
   try {
+    if (data.from === "") data.from = "John Doe: The Unsung Hero";
     const createdKudoCard = await KudoCard.create(data);
     return createdKudoCard;
   } catch (error: any) {
