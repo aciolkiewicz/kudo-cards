@@ -32,27 +32,26 @@ export async function createKudoCard({
   }
 }
 
-export async function fetchKudoCards(): Promise<
-  CardParameters[] | ErrorResponse
-> {
+export async function fetchKudoCards(
+  choosenDate: string
+): Promise<CardParameters[] | ErrorResponse> {
   connectToDB();
 
   try {
-    const currentDate = new Date();
+    const startMonth = new Date(choosenDate);
+    const endMonth = new Date(choosenDate);
+    endMonth.setMonth(endMonth.getMonth() + 1);
+    endMonth.setDate(0);
 
-    const oneMonthBefore = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() - 1,
-      currentDate.getDate()
-    );
+    console.log("endMonth", endMonth);
 
-    const oneMonthBeforeUTC = oneMonthBefore.toISOString();
-    const currentDateUTC = currentDate.toISOString();
+    const startMonthUTC = startMonth.toISOString();
+    const endMonthUTC = endMonth.toISOString();
 
     const kudoCards = await KudoCard.find({
       created: {
-        $gte: oneMonthBeforeUTC,
-        $lt: currentDateUTC,
+        $gte: startMonthUTC,
+        $lt: endMonthUTC,
       },
     }).sort({ created: -1 });
 
