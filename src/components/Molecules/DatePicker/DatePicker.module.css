@@ -1,0 +1,28 @@
+.choosenDate {
+  font-size: 24px;
+  border: none;
+  border-bottom: 2px solid var(--giants-orange);
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+}
+
+.choosenDate:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.choosenDate::-ms-clear {
+  display: none;
+}
+
+.choosenDate::-webkit-datetime-edit-month-field:focus,
+.choosenDate::-webkit-datetime-edit-year-field:focus {
+  background-color: transparent;
+  color: var(--rich-black);
+  outline: none;
+}
+
+.choosenDate::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  background-image: url("/icons/calendar.svg");
+}

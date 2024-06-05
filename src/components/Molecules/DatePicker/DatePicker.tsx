@@ -1,6 +1,8 @@
 "use client";
 import { Controller, useFormContext } from "react-hook-form";
 
+import styles from "./DatePicker.module.css";
+
 const DatePicker = () => {
   const { control } = useFormContext();
 
@@ -14,6 +16,7 @@ const DatePicker = () => {
         control={control}
         render={({ field: { onChange, value } }) => (
           <input
+            className={styles.choosenDate}
             type="month"
             id="choosenDate"
             name="choosenDate"
