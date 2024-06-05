@@ -8,6 +8,7 @@ import { useFormContext } from "react-hook-form";
 
 import { fetchKudoCards } from "@/app/lib/actions/kudoCard.actions";
 import Loading from "@/components/Atoms/Loading/Loading";
+import StrongText from "@/components/Atoms/StrongText/StrongText";
 import Typography from "@/components/Atoms/Typography/Typography";
 import KudoCard from "@/components/Molecules/KudoCard/KudoCard";
 
@@ -70,9 +71,14 @@ const CardsBoard = () => {
     return (
       <section className={styles.cardsBoard}>
         <SnackbarProvider maxSnack={1} />
-        <Typography customClass="error">
-          <>Kudo Cards not found!</>
-        </Typography>
+        <section className={styles.cardsNotFound}>
+          <Typography customClass="error">
+            <>Kudo Cards not found!</>
+          </Typography>
+          <StrongText>
+            Do not hesitate to send a beam of positive energy first.
+          </StrongText>
+        </section>
       </section>
     );
   }
