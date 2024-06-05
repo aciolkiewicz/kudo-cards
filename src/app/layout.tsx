@@ -2,7 +2,9 @@ import "@/app/globals.css";
 
 import type { Metadata } from "next";
 import { Roboto_Slab } from "next/font/google";
+import { Suspense } from "react";
 
+import Loading from "@/components/Atoms/Loading/Loading";
 import BottomBar from "@/components/Organisms/BottomBar/BottomBar";
 import TopBar from "@/components/Organisms/TopBar/TopBar";
 
@@ -24,7 +26,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={robotoSlab.className}>
         <TopBar />
-        <main className={styles.mainContainer}>{children}</main>
+        <main className={styles.mainContainer}>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </main>
         <BottomBar />
       </body>
     </html>
