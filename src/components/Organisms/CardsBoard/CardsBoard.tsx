@@ -25,6 +25,7 @@ const CardsBoard = () => {
   const watchChoosenDate = watch("choosenDate");
 
   const fetcKudoCardshHandler = async () => {
+    setIsLoading(true);
     try {
       const data = await fetchKudoCards(watchChoosenDate);
 
