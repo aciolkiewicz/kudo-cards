@@ -71,13 +71,15 @@ const CardsBoard = () => {
     return (
       <section className={styles.cardsBoard}>
         <SnackbarProvider maxSnack={1} />
-        <section className={styles.cardsNotFound}>
+        <section>
           <Typography customClass="error">
             <>Kudo Cards not found!</>
           </Typography>
-          <StrongText>
-            Do not hesitate to send a beam of positive energy first.
-          </StrongText>
+          <Typography customClass="textCenter">
+            <StrongText>
+              Do not hesitate to send a beam of positive energy first.
+            </StrongText>
+          </Typography>
         </section>
       </section>
     );
