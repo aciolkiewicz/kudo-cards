@@ -81,6 +81,20 @@ export async function fetchKudoCards(
   }
 }
 
+export async function fetchLastKudoCards(): Promise<
+  CardParameters[] | ErrorResponse
+> {
+  connectToDB();
+
+  try {
+    const kudoCards = await KudoCard.find().sort({ created: -1 }).limit(10);
+
+    return kudoCards as CardParameters[];
+  } catch (error: any) {
+    return { error: `Failed to get last Kudo Cards: ${error.message}` };
+  }
+}
+
 export async function fetchKudoCard({
   cardId,
 }: fetchKudoCardParameters): Promise<CardParameters | ErrorResponse> {

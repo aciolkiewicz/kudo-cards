@@ -49,7 +49,7 @@ const CardsBoard = () => {
   };
 
   const setSerachParams = () => {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams.toString());
     params.set("choosenDate", watchChoosenDate);
     replace(`${pathname}?${params.toString()}`);
   };
