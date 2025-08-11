@@ -18,6 +18,22 @@ interface AddHeartParameters {
 
 type ErrorResponse = { error: string };
 
+async function sendKudoToSlack({
+  recipient,
+  message,
+}: {
+  recipient: string;
+  message: string;
+}) {
+  await fetch(process.env.SLACK_WEBHOOK_URL!, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      text: `🎉 New Kudo Card for *${recipient}*: ${message}`,
+    }),
+  });
+}
+
 export async function createKudoCard({
   data,
 }: CreateCardParameters): Promise<CardParameters | ErrorResponse> {
@@ -26,6 +42,10 @@ export async function createKudoCard({
   try {
     if (data.from === "") data.from = "John Doe: The Unsung Hero";
     const createdKudoCard = await KudoCard.create(data);
+    sendKudoToSlack({
+      recipient: data.to,
+      message: `${data.for}`,
+    });
     return createdKudoCard;
   } catch (error: any) {
     return { error: `Failed to create Kudo Card: ${error.message}` };
