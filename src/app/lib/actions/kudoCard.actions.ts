@@ -30,22 +30,24 @@ async function sendKudoToSlack({
   await fetch(process.env.SLACK_WEBHOOK_URL!, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify([
-      {
-        type: "header",
-        text: {
-          type: "mrkdwn",
-          text: `🎉 New Kudo Card for *${recipient}*: ${message}`,
+    body: JSON.stringify({
+      blocks: [
+        {
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: `🎉 New Kudo Card for ${recipient}:`,
+          },
         },
-      },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `https://kudo-cards-adi.netlify.app/kudo-card/${id}`,
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: `*${message}*\n<https://kudo-cards-adi.netlify.app/kudo-card/${id}|View Kudo Card>`,
+          },
         },
-      },
-    ]),
+      ],
+    }),
   });
 }
 
