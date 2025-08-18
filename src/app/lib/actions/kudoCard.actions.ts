@@ -21,16 +21,31 @@ type ErrorResponse = { error: string };
 async function sendKudoToSlack({
   recipient,
   message,
+  id,
 }: {
   recipient: string;
   message: string;
+  id: string;
 }) {
   await fetch(process.env.SLACK_WEBHOOK_URL!, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      text: `🎉 New Kudo Card for *${recipient}*: ${message}`,
-    }),
+    body: JSON.stringify([
+      {
+        type: "header",
+        text: {
+          type: "mrkdwn",
+          text: `🎉 New Kudo Card for *${recipient}*: ${message}`,
+        },
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: `https://kudo-cards-adi.netlify.app/kudo-card/${id}`,
+        },
+      },
+    ]),
   });
 }
 
@@ -45,6 +60,7 @@ export async function createKudoCard({
     sendKudoToSlack({
       recipient: data.to,
       message: `${data.for}`,
+      id: createdKudoCard._id.toString(),
     });
     return createdKudoCard;
   } catch (error: any) {
