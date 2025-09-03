@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useState } from "react";
-import { MouseEvent } from "react";
+import { MouseEvent, useRef } from "react";
 
 import { addHeart } from "@/app/lib/actions/kudoCard.actions";
 
@@ -16,48 +16,67 @@ interface Properties {
 
 const HeartPlus = ({ cardId, hearts }: Properties) => {
   const [heartsSaved, setHeartsSaved] = useState(hearts);
-  const [isLoading, setIsLoading] = useState(false);
+  const [floatingHearts, setFloatingHearts] = useState<number[]>([]);
+  const heartId = useRef(0);
+
   const addHeartHandler = async (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
 
-    if (hearts === heartsSaved) {
-      try {
-        setIsLoading(true);
-        const kudoCardHearts = await addHeart({
-          cardId: cardId,
-          hearts: heartsSaved,
-        });
+    try {
+      const kudoCardHearts = await addHeart({
+        cardId: cardId,
+        hearts: heartsSaved,
+      });
 
-        if (typeof kudoCardHearts === "object" && "error" in kudoCardHearts) {
-          enqueueSnackbar(kudoCardHearts.error, {
-            variant: "error",
-            preventDuplicate: true,
-          });
-        } else {
-          setHeartsSaved(kudoCardHearts);
-        }
-      } catch (error) {
-        enqueueSnackbar("An unexpected error occurred.", {
+      if (typeof kudoCardHearts === "object" && "error" in kudoCardHearts) {
+        enqueueSnackbar(kudoCardHearts.error, {
           variant: "error",
           preventDuplicate: true,
         });
-      } finally {
-        setIsLoading(false);
+      } else {
+        const heartsToAdd = kudoCardHearts - heartsSaved;
+        setFloatingHearts((prev) => [
+          ...prev,
+          ...Array.from({ length: heartsToAdd }, () => heartId.current++),
+        ]);
+        setHeartsSaved(kudoCardHearts);
       }
+    } catch (error) {
+      enqueueSnackbar("An unexpected error occurred.", {
+        variant: "error",
+        preventDuplicate: true,
+      });
     }
   };
+
+  const handleAnimationEnd = (id: number) => {
+    setFloatingHearts((prev) => prev.filter((h) => h !== id));
+  };
+
   return (
     <div className={styles.heartPlus}>
       <SnackbarProvider maxSnack={1} />
 
-      <Image
-        src="/icons/heart_plus.svg"
-        alt="Send heart"
-        width={25}
-        height={25}
-        className={`${styles.heartPlusIcon} ${(hearts !== heartsSaved || isLoading) && styles.heartAdded}`}
-        onClick={(event) => addHeartHandler(event)}
-      />
+      <div className={styles.heartsContainer}>
+        <Image
+          src="/icons/heart_plus.svg"
+          alt="Send heart"
+          width={25}
+          height={25}
+          className={`${styles.heartPlusIcon}`}
+          onClick={(event) => addHeartHandler(event)}
+        />
+        <div className={styles.floatingHeartsContainer}>
+          {floatingHearts.map((id) => (
+            <span
+              key={id}
+              className={styles.floatingHeart}
+              onAnimationEnd={() => handleAnimationEnd(id)}>
+              ❤️
+            </span>
+          ))}
+        </div>
+      </div>
       <Typography customClass="cornsilkMarginReset">
         <>
           <StrongText>{`${heartsSaved}`}</StrongText> times loved

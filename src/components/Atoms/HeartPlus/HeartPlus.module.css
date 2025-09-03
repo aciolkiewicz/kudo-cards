@@ -5,6 +5,10 @@
   gap: 10px;
 }
 
+.heartsContainer {
+  position: relative;
+}
+
 .heartPlusIcon {
   cursor: cell;
   opacity: 1;
@@ -22,4 +26,36 @@
 
 .heartAdded:hover {
   transform: none;
+}
+
+.floatingHeartsContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+.floatingHeart {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.4rem;
+  animation: floatUp 1s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-40px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(0.8);
+  }
 }
