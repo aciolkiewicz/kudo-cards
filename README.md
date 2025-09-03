@@ -17,9 +17,9 @@ The application to create kudo cards and keep them on the board. User is able to
 
 2. Create .env.local configuration file inside main directory with values:
 
-`MONGODB_URL=###
+  `MONGODB_URL=###`
 
-SLACK_WEBHOOK_URL=###`
+  `SLACK_WEBHOOK_URL=###`
 
 3. Run development application:`yarn dev`
 
