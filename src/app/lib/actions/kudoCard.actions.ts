@@ -1,7 +1,5 @@
 "use server";
 
-import { FlattenMaps } from "mongoose";
-
 import KudoCard from "../models/kudoCard.models";
 import { connectToDB } from "../mongoose";
 
