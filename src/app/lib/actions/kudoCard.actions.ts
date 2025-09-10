@@ -51,6 +51,15 @@ async function sendKudoToSlack({
   });
 }
 
+function toPlainCard(card: any): CardParameters {
+  return {
+    ...card,
+    _id: card._id?.toString(),
+    created:
+      card.created instanceof Date ? card.created.toISOString() : card.created,
+  };
+}
+
 export async function createKudoCard({
   data,
 }: CreateCardParameters): Promise<CardParameters | ErrorResponse> {
@@ -64,7 +73,7 @@ export async function createKudoCard({
       message: `${data.for}`,
       id: createdKudoCard._id.toString(),
     });
-    return createdKudoCard;
+    return toPlainCard(createdKudoCard.toObject());
   } catch (error: any) {
     return { error: `Failed to create Kudo Card: ${error.message}` };
   }
@@ -81,8 +90,6 @@ export async function fetchKudoCards(
     endMonth.setMonth(endMonth.getMonth() + 1);
     endMonth.setDate(0);
 
-    console.log("endMonth", endMonth);
-
     const startMonthUTC = startMonth.toISOString();
     const endMonthUTC = endMonth.toISOString();
 
@@ -91,9 +98,11 @@ export async function fetchKudoCards(
         $gte: startMonthUTC,
         $lt: endMonthUTC,
       },
-    }).sort({ created: -1 });
+    })
+      .lean()
+      .sort({ created: -1 });
 
-    return kudoCards as CardParameters[];
+    return kudoCards.map(toPlainCard);
   } catch (error: any) {
     return { error: `Failed to get Kudo Cards: ${error.message}` };
   }
@@ -105,9 +114,12 @@ export async function fetchLastKudoCards(): Promise<
   connectToDB();
 
   try {
-    const kudoCards = await KudoCard.find().sort({ created: -1 }).limit(10);
+    const kudoCards = await KudoCard.find()
+      .lean()
+      .sort({ created: -1 })
+      .limit(10);
 
-    return kudoCards as CardParameters[];
+    return kudoCards.map(toPlainCard);
   } catch (error: any) {
     return { error: `Failed to get last Kudo Cards: ${error.message}` };
   }
@@ -119,9 +131,9 @@ export async function fetchKudoCard({
   connectToDB();
 
   try {
-    const kudoCard = await KudoCard.findById(cardId);
+    const kudoCard = await KudoCard.findById(cardId).lean();
 
-    return kudoCard as CardParameters;
+    return toPlainCard(kudoCard);
   } catch (error: any) {
     return { error: `Failed to get Kudo Card ${cardId}: ${error.message}` };
   }
