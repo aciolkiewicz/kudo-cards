@@ -1,3 +1,5 @@
+import React from "react";
+
 import styles from "./Typography.module.css";
 
 interface TypographyProperties {
