@@ -1,7 +1,7 @@
 import styles from "./Typography.module.css";
 
 interface TypographyProperties {
-  children?: JSX.Element;
+  children?: React.JSX.Element;
   customClass?: string;
 }
 
