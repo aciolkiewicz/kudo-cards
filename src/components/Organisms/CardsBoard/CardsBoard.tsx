@@ -56,7 +56,7 @@ const CardsBoard = () => {
 
   useEffect(() => {
     setSerachParams();
-    fetcKudoCardshHandler();
+    watchChoosenDate && fetcKudoCardshHandler();
   }, [watchChoosenDate]);
 
   if (isLoading) {
