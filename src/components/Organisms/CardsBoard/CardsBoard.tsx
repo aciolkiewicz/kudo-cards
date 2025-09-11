@@ -59,7 +59,7 @@ const CardsBoard = () => {
     fetcKudoCardshHandler();
   }, [watchChoosenDate]);
 
-  if (isLoading) {
+  if (isLoading && kudoCards.length === 0) {
     return (
       <section className={styles.cardsBoard}>
         <Loading />
