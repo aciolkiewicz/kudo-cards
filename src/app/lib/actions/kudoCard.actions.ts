@@ -84,11 +84,6 @@ export async function fetchKudoCards(
 ): Promise<CardParameters[] | ErrorResponse> {
   connectToDB();
 
-  // Guard against missing or invalid date
-  if (!choosenDate || isNaN(new Date(choosenDate).getTime())) {
-    return { error: "Invalid or missing date parameter." };
-  }
-
   try {
     const startMonth = new Date(choosenDate);
     const endMonth = new Date(choosenDate);
