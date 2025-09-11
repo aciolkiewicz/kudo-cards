@@ -20,7 +20,7 @@ export default function Home() {
     defaultValues: initialFormValues,
   });
 
-  const { setValue } = methods;
+  const { setValue, watch } = methods;
 
   useEffect(() => {
     if (!dateFromUrl) {
@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <FormProvider {...methods}>
       <BoardHeader />
-      <CardsBoard />
+      {watch("choosenDate") && <CardsBoard />}
     </FormProvider>
   );
 }
