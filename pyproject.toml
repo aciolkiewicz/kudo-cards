@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "kudo-cards-cli"
 version = "1.0.0"
 authors = [
-    {name = "Kudo Cards Team", email = "team@kudocards.com"},
+    {name = "Michał Moroz", email = "michalmoroz@gmail.com"},
 ]
 description = "Command-line client for sending Kudo Cards"
 readme = "CLI-README.md"
@@ -33,9 +33,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/kudo-cards"
-"Bug Tracker" = "https://github.com/yourusername/kudo-cards/issues"
-Documentation = "https://github.com/yourusername/kudo-cards#readme"
+Homepage = "https://github.com/TimmyFight/kudo-cards"
+"Bug Tracker" = "https://github.com/TimmyFight/kudo-cards/issues"
+Documentation = "https://github.com/TimmyFight/kudo-cards#readme"
 
 [project.scripts]
 kudo = "kudo_cards_cli.main:main"
