@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kudo-cards-cli"
+version = "1.0.0"
+authors = [
+    {name = "Kudo Cards Team", email = "team@kudocards.com"},
+]
+description = "Command-line client for sending Kudo Cards"
+readme = "CLI-README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Communications",
+    "Topic :: Utilities",
+]
+keywords = ["kudo", "cards", "appreciation", "team", "cli"]
+dependencies = [
+    "requests>=2.25.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/kudo-cards"
+"Bug Tracker" = "https://github.com/yourusername/kudo-cards/issues"
+Documentation = "https://github.com/yourusername/kudo-cards#readme"
+
+[project.scripts]
+kudo = "kudo_cards_cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["kudo_cards_cli*"]
+
+[tool.setuptools.package-data]
+kudo_cards_cli = ["*.ini"]
