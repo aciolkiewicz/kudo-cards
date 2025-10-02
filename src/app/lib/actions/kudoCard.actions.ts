@@ -86,9 +86,9 @@ export async function fetchKudoCards(
 
   try {
     const startMonth = new Date(choosenDate);
-    const endMonth = new Date(choosenDate);
+    startMonth.setDate(1);
+    const endMonth = new Date(startMonth);
     endMonth.setMonth(endMonth.getMonth() + 1);
-    endMonth.setDate(0);
 
     const startMonthUTC = startMonth.toISOString();
     const endMonthUTC = endMonth.toISOString();
@@ -102,7 +102,7 @@ export async function fetchKudoCards(
       .lean()
       .sort({ created: -1 });
 
-    return kudoCards.map(toPlainCard);
+    return Array.isArray(kudoCards) ? kudoCards.map(toPlainCard) : [];
   } catch (error: any) {
     return { error: `Failed to get Kudo Cards: ${error.message}` };
   }
@@ -119,7 +119,7 @@ export async function fetchLastKudoCards(): Promise<
       .sort({ created: -1 })
       .limit(10);
 
-    return kudoCards.map(toPlainCard);
+    return kudoCards?.map(toPlainCard) || [];
   } catch (error: any) {
     return { error: `Failed to get last Kudo Cards: ${error.message}` };
   }

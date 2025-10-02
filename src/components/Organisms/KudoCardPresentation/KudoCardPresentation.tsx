@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useEffect, useState } from "react";
 
-import { fetchKudoCard } from "@/app/lib/actions/kudoCard.actions";
 import CopyToClipboard from "@/components/Atoms/CopyToClipboard/CopyToClipboard";
 import Headings from "@/components/Atoms/Headings/Headings";
 import Loading from "@/components/Atoms/Loading/Loading";
@@ -27,7 +26,8 @@ const KudoCardPresentation = ({ cardId }: Parameters) => {
   const getKudoCard = async () => {
     if (cardId) {
       try {
-        const kudoCard = await fetchKudoCard({ cardId: cardId });
+        const res = await fetch(`/api/kudo-cards/${cardId}`);
+        const kudoCard = await res.json();
 
         if (typeof kudoCard === "object" && "error" in kudoCard) {
           enqueueSnackbar(kudoCard.error, {

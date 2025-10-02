@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import { fetchLastKudoCards } from "@/app/lib/actions/kudoCard.actions";
 import StrongText from "@/components/Atoms/StrongText/StrongText";
 import Typography from "@/components/Atoms/Typography/Typography";
 
@@ -13,7 +12,8 @@ const BottomBar = () => {
 
   const fetchLastKudoCardshHandler = async () => {
     try {
-      const data = await fetchLastKudoCards();
+      const res = await fetch("/api/kudo-cards/last");
+      const data = await res.json();
 
       if (!("error" in data)) {
         setKudoCards(data);

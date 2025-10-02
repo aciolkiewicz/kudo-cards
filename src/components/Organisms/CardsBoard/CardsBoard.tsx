@@ -6,7 +6,6 @@ import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 
-import { fetchKudoCards } from "@/app/lib/actions/kudoCard.actions";
 import Loading from "@/components/Atoms/Loading/Loading";
 import StrongText from "@/components/Atoms/StrongText/StrongText";
 import Typography from "@/components/Atoms/Typography/Typography";
@@ -28,7 +27,10 @@ const CardsBoard = () => {
   const fetcKudoCardshHandler = async () => {
     setIsLoading(true);
     try {
-      const data = await fetchKudoCards(watchChoosenDate);
+      const res = await fetch(
+        `/api/kudo-cards?choosenDate=${encodeURIComponent(watchChoosenDate)}`
+      );
+      const data = await res.json();
 
       if (typeof data === "object" && "error" in data) {
         enqueueSnackbar(data.error, {
@@ -49,7 +51,7 @@ const CardsBoard = () => {
   };
 
   const setSerachParams = () => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams?.toString());
     params.set("choosenDate", watchChoosenDate);
     replace(`${pathname}?${params.toString()}`);
   };

@@ -3,8 +3,6 @@ import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useState } from "react";
 import { MouseEvent, useRef } from "react";
 
-import { addHeart } from "@/app/lib/actions/kudoCard.actions";
-
 import StrongText from "../StrongText/StrongText";
 import Typography from "../Typography/Typography";
 import styles from "./HeartPlus.module.css";
@@ -23,11 +21,12 @@ const HeartPlus = ({ cardId, hearts }: Properties) => {
     event.preventDefault();
 
     try {
-      const kudoCardHearts = await addHeart({
-        cardId: cardId,
-        hearts: heartsSaved,
+      const res = await fetch(`/api/kudo-cards/${cardId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hearts: heartsSaved }),
       });
-
+      const kudoCardHearts = await res.json();
       if (typeof kudoCardHearts === "object" && "error" in kudoCardHearts) {
         enqueueSnackbar(kudoCardHearts.error, {
           variant: "error",

@@ -8,7 +8,7 @@ import CardsBoard from "@/components/Organisms/CardsBoard/CardsBoard";
 
 export default function Home() {
   const searchParams = useSearchParams();
-  const dateFromUrl = searchParams.get("choosenDate");
+  const dateFromUrl = searchParams?.get("choosenDate");
   const todayDate = new Date();
   const formattedDate = `${todayDate.getFullYear()}-${("0" + (todayDate.getMonth() + 1)).slice(-2)}`;
 

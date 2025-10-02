@@ -4,7 +4,6 @@ import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { createKudoCard } from "@/app/lib/actions/kudoCard.actions";
 import Button from "@/components/Atoms/Button/Button";
 import CardForm from "@/components/Molecules/CardForm/CardForm";
 import ChosingCardStyle from "@/components/Molecules/ChosingCardStyle/ChosingCardStyle";
@@ -35,7 +34,12 @@ const FormCreateCard = () => {
   async function onSubmit(data: CardParameters) {
     setIsLoading(true);
     try {
-      const createdKudoCard = await createKudoCard({ data });
+      const res = await fetch("/api/kudo-cards", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const createdKudoCard = await res.json();
 
       if (typeof createdKudoCard === "object" && "error" in createdKudoCard) {
         enqueueSnackbar(createdKudoCard.error, {
