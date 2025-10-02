@@ -18,7 +18,7 @@ const CardsBoard = () => {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [kudoCards, setKudoCards] = useState<CardParameters[]>([]);
 
   const { watch } = useFormContext();
