@@ -1,0 +1,16 @@
+[api]
+# Your API key (set ENV_KUDO_API_KEY on the server)
+key = 6xhs6crTyO4LKjrO1CEGMUTC1I2giefb
+
+# Base URL of your Kudo Cards application
+url = http://localhost:3000
+
+[defaults]
+# Default sender name (optional)
+from = Your Name
+
+# Default card color (optional, use "random" for random selection)
+card_color = random
+
+# Default card title (optional, use "random" for random selection)
+card_title = random

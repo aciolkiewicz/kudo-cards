@@ -1,6 +1,6 @@
 interface CardParameters {
   cardTitle: string;
-  cardColor: strign;
+  cardColor: string;
   to: string;
   for: string;
   from: string;

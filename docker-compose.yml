@@ -1,0 +1,40 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: kudo-cards-mongo
+    restart: unless-stopped
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - kudo-cards-network
+
+  app:
+    image: node:18-alpine
+    container_name: kudo-cards-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      MONGODB_URL: mongodb://root:password@mongo:27017/kudo-cards?authSource=admin
+      NODE_ENV: development
+      ENV_KUDO_API_KEY: 6xhs6crTyO4LKjrO1CEGMUTC1I2giefb
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh ./docker-entrypoint.sh
+    depends_on:
+      - mongo
+    networks:
+      - kudo-cards-network
+
+volumes:
+  mongo_data:
+
+networks:
+  kudo-cards-network:
+    driver: bridge
