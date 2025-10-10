@@ -4,10 +4,10 @@ import { addHeart, fetchKudoCard } from "@/app/lib/actions/kudoCard.actions";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { cardId: string } }
+  { params }: { params: Promise<{ cardId: string }> }
 ) {
   try {
-    const { cardId } = params;
+    const { cardId } = await params;
 
     if (!cardId) {
       return NextResponse.json(
@@ -29,10 +29,10 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { cardId: string } }
+  { params }: { params: Promise<{ cardId: string }> }
 ) {
   try {
-    const { cardId } = params;
+    const { cardId } = await params;
 
     if (!cardId) {
       return NextResponse.json(
