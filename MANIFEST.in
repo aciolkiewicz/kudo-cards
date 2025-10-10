@@ -1,0 +1,4 @@
+include CLI-README.md
+include .kudo-cards.ini.example
+include LICENSE
+recursive-include kudo_cards_cli *.py
