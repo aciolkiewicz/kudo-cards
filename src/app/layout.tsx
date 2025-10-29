@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import Loading from "@/components/Atoms/Loading/Loading";
 import BottomBar from "@/components/Organisms/BottomBar/BottomBar";
 import TopBar from "@/components/Organisms/TopBar/TopBar";
+import { AuthProvider } from "@/context/AuthContext";
 
 import styles from "./layout.module.css";
 
@@ -25,11 +26,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={robotoSlab.className}>
-        <TopBar />
-        <main className={styles.mainContainer}>
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-        </main>
-        <BottomBar />
+        <AuthProvider>
+          <TopBar />
+          <main className={styles.mainContainer}>
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </main>
+          <BottomBar />
+        </AuthProvider>
       </body>
     </html>
   );
