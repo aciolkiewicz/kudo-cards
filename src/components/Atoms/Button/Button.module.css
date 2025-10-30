@@ -18,3 +18,26 @@
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+.button {
+  padding: 5px 10px;
+  font-size: 1em;
+  font-weight: 700;
+  text-align: center;
+  transition: all;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+  color: var(--moon-stone);
+  border: 2px solid var(--moon-stone);
+  cursor: pointer;
+}
+
+.button:hover {
+  color: var(--cornsilk);
+  background-color: var(--moon-stone);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
