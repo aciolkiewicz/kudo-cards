@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { createKudoCard, fetchKudoCards } from "@/app/lib/actions/kudoCard.actions";
+import {
+  createKudoCard,
+  fetchKudoCards,
+} from "@/app/lib/actions/kudoCard.actions";
 import { UserValidation } from "@/app/lib/validations/kudoCard.validations";
 
 export async function GET(request: NextRequest) {
@@ -40,10 +43,7 @@ export async function POST(request: NextRequest) {
     const providedKey = authHeader?.replace("Bearer ", "");
 
     if (!providedKey || providedKey !== apiKey) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const body = await request.json();
@@ -59,10 +59,7 @@ export async function POST(request: NextRequest) {
     const result = await createKudoCard({ data: validation.data });
 
     if (typeof result === "object" && "error" in result) {
-      return NextResponse.json(
-        { error: result.error },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: result.error }, { status: 500 });
     }
 
     return NextResponse.json(result, { status: 201 });
