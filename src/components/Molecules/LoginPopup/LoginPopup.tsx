@@ -21,7 +21,7 @@ export default function LoginPopup() {
         <div>
           <SnackbarProvider maxSnack={1} />
           <a href="/auth/login">
-            <Button type="button">Sign in with Google</Button>
+            <Button type="button">Sign In</Button>
           </a>
         </div>
       </div>

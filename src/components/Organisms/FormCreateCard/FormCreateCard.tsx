@@ -36,7 +36,10 @@ const FormCreateCard = () => {
     try {
       const res = await fetch("/api/kudo-cards", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${process.env.NEXT_PUBLIC_ENV_KUDO_API_KEY}`,
+        },
         body: JSON.stringify(data),
       });
       const createdKudoCard = await res.json();
