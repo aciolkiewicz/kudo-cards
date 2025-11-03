@@ -1,10 +1,9 @@
-import { Auth0Client } from "@auth0/nextjs-auth0/server";
 import type { NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  const auth = new Auth0Client();
+import { auth0 } from "@/app/lib/auth0";
 
-  return await auth.middleware(request);
+export async function middleware(request: NextRequest) {
+  return await auth0.middleware(request);
 }
 
 export const config = {

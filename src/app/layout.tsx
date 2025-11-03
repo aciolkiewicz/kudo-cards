@@ -1,6 +1,5 @@
 import "@/app/globals.css";
 
-import { Auth0Client } from "@auth0/nextjs-auth0/server";
 import type { Metadata } from "next";
 import { Roboto_Slab } from "next/font/google";
 import { Suspense } from "react";
@@ -11,6 +10,7 @@ import BottomBar from "@/components/Organisms/BottomBar/BottomBar";
 import TopBar from "@/components/Organisms/TopBar/TopBar";
 
 import styles from "./layout.module.css";
+import { auth0 } from "./lib/auth0";
 
 const robotoSlab = Roboto_Slab({ subsets: ["latin"] });
 
@@ -24,8 +24,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const auth = new Auth0Client();
-  const session = await auth.getSession();
+  const session = await auth0.getSession();
 
   return (
     <html lang="en">
