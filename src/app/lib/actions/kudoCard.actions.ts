@@ -70,7 +70,7 @@ export async function createKudoCard({
   try {
     if (data.from === "") data.from = "John Doe: The Unsung Hero";
     const createdKudoCard = await KudoCard.create(data);
-    sendKudoToSlack({
+    await sendKudoToSlack({
       recipient: data.to,
       message: `${data.for}`,
       id: createdKudoCard._id.toString(),
