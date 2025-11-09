@@ -10,6 +10,11 @@ import ChosingCardStyle from "@/components/Molecules/ChosingCardStyle/ChosingCar
 
 import styles from "./FormCreateCard.module.css";
 
+interface OnSubmitParameters {
+  data: CardParameters;
+  sendAgain: boolean;
+}
+
 const FormCreateCard = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -29,9 +34,9 @@ const FormCreateCard = () => {
     defaultValues: initialFormValues,
   });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, reset } = methods;
 
-  async function onSubmit(data: CardParameters) {
+  async function onSubmit({ data, sendAgain }: OnSubmitParameters) {
     setIsLoading(true);
     try {
       const res = await fetch("/api/kudo-cards", {
@@ -54,7 +59,15 @@ const FormCreateCard = () => {
           variant: "success",
         });
 
-        if (createdKudoCard._id) {
+        if (sendAgain) {
+          const persistedValues = {
+            ...initialFormValues,
+            from: data.from,
+            cardTitle: data.cardTitle,
+            cardColor: data.cardColor,
+          };
+          reset(persistedValues);
+        } else if (createdKudoCard._id) {
           router.push(`/kudo-card/${createdKudoCard._id}`);
         }
       }
@@ -70,15 +83,31 @@ const FormCreateCard = () => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
+      <form className={styles.formContainer}>
         <SnackbarProvider maxSnack={1} />
         <section className={styles.interactiveSection}>
           <ChosingCardStyle />
           <CardForm />
         </section>
-        <Button type="submit" disabled={isLoading}>
-          Send Kudo Card
-        </Button>
+        <div className={styles.buttonsContainer}>
+          <Button
+            type="button"
+            disabled={isLoading}
+            onClick={handleSubmit((data) =>
+              onSubmit({ data, sendAgain: false })
+            )}>
+            Send Kudo Card
+          </Button>
+          <Button
+            type="button"
+            disabled={isLoading}
+            variant="secondary"
+            onClick={handleSubmit((data) =>
+              onSubmit({ data, sendAgain: true })
+            )}>
+            Send and Create New Kudo Card
+          </Button>
+        </div>
       </form>
     </FormProvider>
   );

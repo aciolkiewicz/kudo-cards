@@ -34,8 +34,12 @@
   border: 2px solid var(--moon-stone);
 }
 
-.button:hover p,
-.button.active p {
+.button:hover p {
   color: var(--cornsilk);
   background-color: var(--moon-stone);
+}
+
+.button.active p {
+  opacity: 0.5;
+  cursor: default;
 }
