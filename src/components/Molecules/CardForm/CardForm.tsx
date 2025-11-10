@@ -2,6 +2,7 @@ import { Controller, useFormContext } from "react-hook-form";
 
 import Headings from "@/components/Atoms/Headings/Headings";
 import Input from "@/components/Atoms/Input/Input";
+import ToolbarTextField from "@/components/Molecules/ToolbarTextField/ToolbarTextField";
 import { cardTitles } from "@/constants/index";
 
 import styles from "./CardForm.module.css";
@@ -35,21 +36,24 @@ const CardForm = () => {
             />
           )}
         />
-        <Controller
-          name="for"
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <Input
-              type="textarea"
-              name="for"
-              labelValue="FOR:"
-              group="for"
-              value={value}
-              onChange={onChange}
-              maxLength={250}
-            />
-          )}
-        />
+        <div className={styles.relativeContainer}>
+          <Controller
+            name="for"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Input
+                type="textarea"
+                name="for"
+                labelValue="FOR:"
+                group="for"
+                value={value}
+                onChange={onChange}
+                maxLength={250}
+              />
+            )}
+          />
+          <ToolbarTextField fieldToManipulate="for" />
+        </div>
         <Controller
           name="from"
           control={control}
