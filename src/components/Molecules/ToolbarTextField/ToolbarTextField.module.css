@@ -1,11 +1,12 @@
 .toolbarContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1em;
   padding: 5px;
   position: absolute;
-  right: -70px;
+  right: -75px;
   top: 10%;
   height: 80%;
   border: dashed 1px var(--jonquil);
@@ -31,9 +32,11 @@
 }
 
 .toolPickerModal {
+  height: 460px;
+  overflow: auto;
   position: absolute;
   top: 50%;
   transform: translateY(-60%);
-  right: 30px;
+  right: 45px;
   z-index: 50;
 }

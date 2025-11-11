@@ -26,6 +26,7 @@ const FormCreateCard = () => {
     to: "",
     for: "",
     from: "",
+    gifUrl: "",
     hearts: 0,
     created: todayDate,
   };
