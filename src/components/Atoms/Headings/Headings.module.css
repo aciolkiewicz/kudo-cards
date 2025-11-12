@@ -3,6 +3,7 @@
 }
 
 .cardTitle {
+  position: relative;
   margin: 0;
   color: var(--cornsilk);
 }

@@ -6,6 +6,7 @@ const kudoCardSchema = new mongoose.Schema({
   to: { type: String, required: true },
   for: { type: String, required: true },
   from: { type: String },
+  gifUrl: { type: String },
   hearts: { type: Number, required: true },
   created: { type: String, required: true },
 });

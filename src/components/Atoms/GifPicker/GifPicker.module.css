@@ -1,0 +1,11 @@
+.toolPickerModal {
+  height: 460px;
+  width: 370px;
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  right: 45px;
+  z-index: 50;
+  background-color: var(--cornsilk);
+}

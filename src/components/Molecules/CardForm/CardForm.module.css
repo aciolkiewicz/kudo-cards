@@ -19,6 +19,20 @@
   position: relative;
 }
 
+.inputsContainer {
+  z-index: 10;
+}
+
+.gifContainer {
+  opacity: 0.2;
+  position: absolute;
+  top: -5px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .jonquil {
   background-color: var(--jonquil);
 }

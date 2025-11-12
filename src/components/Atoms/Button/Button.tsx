@@ -4,7 +4,7 @@ interface Properties {
   type: "submit" | "reset" | "button";
   disabled?: boolean;
   children: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "inline";
   onClick?: () => void;
 }
 

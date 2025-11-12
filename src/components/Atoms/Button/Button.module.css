@@ -29,3 +29,19 @@
   color: var(--cornsilk);
   background-color: var(--moon-stone);
 }
+
+.inline {
+  position: absolute;
+  padding: 2px;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.6em;
+  border-bottom: 1px solid var(--cornsilk);
+  color: var(--cornsilk);
+  background: none;
+}
+
+.inline:hover {
+  box-shadow: none;
+}

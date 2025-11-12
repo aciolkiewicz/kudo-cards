@@ -12,7 +12,16 @@ interface Parameters {
 const KudoCard = ({ kudoCard }: Parameters) => {
   const cardTitle = kudoCard.cardTitle;
   const cardColor = kudoCard.cardColor;
+  const gifUrl = kudoCard.gifUrl;
   const cardObject = cardTitles.find((element) => element.name === cardTitle);
+
+  const backgroundStyle = gifUrl
+    ? {
+        backgroundImage: `url(${gifUrl})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }
+    : undefined;
 
   return (
     <section className={styles.kudoCard}>
@@ -24,31 +33,34 @@ const KudoCard = ({ kudoCard }: Parameters) => {
           <HeartPlus cardId={kudoCard._id} hearts={kudoCard.hearts} />
         )}
       </section>
-      <section className={styles.cardContent}>
-        <Input
-          type="text"
-          name="to"
-          labelValue="TO:"
-          group="to"
-          value={kudoCard.to}
-          readOnly
-        />
-        <Input
-          type="textarea"
-          name="for"
-          labelValue="FOR:"
-          group="for"
-          value={kudoCard.for}
-          readOnly
-        />
-        <Input
-          type="text"
-          name="from"
-          labelValue="FROM:"
-          group="from"
-          value={kudoCard.from}
-          readOnly
-        />
+      <section className={styles.card}>
+        <div className={styles.gifContainer} style={backgroundStyle}></div>
+        <div className={styles.cardContent}>
+          <Input
+            type="text"
+            name="to"
+            labelValue="TO:"
+            group="to"
+            value={kudoCard.to}
+            readOnly
+          />
+          <Input
+            type="textarea"
+            name="for"
+            labelValue="FOR:"
+            group="for"
+            value={kudoCard.for}
+            readOnly
+          />
+          <Input
+            type="text"
+            name="from"
+            labelValue="FROM:"
+            group="from"
+            value={kudoCard.from}
+            readOnly
+          />
+        </div>
       </section>
     </section>
   );

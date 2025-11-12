@@ -4,6 +4,7 @@ interface CardParameters {
   to: string;
   for: string;
   from: string;
+  gifUrl: string;
   hearts: number;
   created: string;
   _id?: string;
