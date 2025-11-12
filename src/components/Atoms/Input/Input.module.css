@@ -25,6 +25,7 @@
 }
 
 .inputColumnFlex input {
+  background: transparent;
   border-bottom: 1px solid var(--moon-stone);
 }
 
