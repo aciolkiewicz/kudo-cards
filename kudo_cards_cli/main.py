@@ -102,13 +102,16 @@ card_title = random
         print(f"Randomly selected {choice_type}: {choice}")
         return choice
 
-    def send_kudo(self, to: str, for_msg: str, from_user: Optional[str] = None,
+    def send_kudo(self, to: str, for_msg: str, from_user: Optional[str] = None, gif_url: Optional[str] = None,
                   card_color: Optional[str] = None, card_title: Optional[str] = None) -> bool:
         """Send a kudo card via the API"""
 
         # Use config defaults if not provided
         if from_user is None:
             from_user = self.default_from
+
+        if gif_url is None:
+            gif_url = ""
 
         if card_color is None:
             card_color = self.default_card_color
@@ -136,6 +139,7 @@ card_title = random
             "to": to,
             "for": for_msg,
             "from": from_user or "",
+            "gifUrl": gif_url or "",
             "hearts": 0,
             "created": datetime.now().isoformat()
         }
@@ -191,6 +195,7 @@ Default card colors: {', '.join(DEFAULT_CARD_COLORS)}
 Examples:
   kudo "John Doe" "Great work on the project!"
   kudo "Jane Smith" "Thanks for your help" --from "Mike" -c jonquil -t theBest
+  kudo "Jane Smith" "Thanks for your help" --from "Mike" --gif "http://example.com/cheers.gif"
   kudo "Team" "Amazing presentation!" --from "Manager" -c random -t random
   kudo "Alice" "Great debugging!" --config /path/to/custom-config.ini
         """,
@@ -200,6 +205,7 @@ Examples:
     parser.add_argument("to", nargs='?', help="Recipient of the kudo card")
     parser.add_argument("for", nargs='?', help="Message/reason for the kudo card")
     parser.add_argument("--from", dest="from_user", help="Sender name (optional)")
+    parser.add_argument("--gif", dest="gif_url", help="Gif URL (optional)")
     parser.add_argument("-c", "--color", dest="card_color", default="random",
                         help="Card color (default: random)")
     parser.add_argument("-t", "--title", dest="card_title", default="random",
@@ -228,6 +234,7 @@ Examples:
     client = KudoClient(config_file=args.config_file)
     # Only pass CLI args if they were explicitly provided (not defaults)
     from_user = args.from_user if args.from_user else None
+    gif_url = args.gif_url if args.gif_url else None
     card_color = args.card_color if args.card_color != "random" else None
     card_title = args.card_title if args.card_title != "random" else None
 
@@ -235,6 +242,7 @@ Examples:
         to=args.to,
         for_msg=getattr(args, 'for'),
         from_user=from_user,
+        gif_url=gif_url,
         card_color=card_color,
         card_title=card_title
     )
