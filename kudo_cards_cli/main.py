@@ -172,13 +172,16 @@ client_secret = your_client_secret
         print(f"Randomly selected {choice_type}: {choice}")
         return choice
 
-    def send_kudo(self, to: str, for_msg: str, from_user: Optional[str] = None,
+    def send_kudo(self, to: str, for_msg: str, from_user: Optional[str] = None, gif_url: Optional[str] = None,
                   card_color: Optional[str] = None, card_title: Optional[str] = None) -> bool:
         """Send a kudo card via the API"""
 
         # Use config defaults if not provided
         if from_user is None:
             from_user = self.default_from
+
+        if gif_url is None:
+            gif_url = ""
 
         if card_color is None:
             card_color = self.default_card_color
@@ -206,7 +209,7 @@ client_secret = your_client_secret
             "to": to,
             "for": for_msg,
             "from": from_user or "",
-            "gifUrl": "",
+            "gifUrl": gif_url or "",
             "hearts": 0,
             "created": datetime.now().isoformat()
         }
